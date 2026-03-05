@@ -1,10 +1,10 @@
 # Toolasha
 
-![Version](https://img.shields.io/badge/version-1.29.0-orange?style=flat-square) ![Status](https://img.shields.io/badge/status-pre--release-yellow?style=flat-square) ![License](https://img.shields.io/badge/license-CC--BY--NC--SA--4.0-blue?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.29.1-orange?style=flat-square) ![Status](https://img.shields.io/badge/status-pre--release-yellow?style=flat-square) ![License](https://img.shields.io/badge/license-CC--BY--NC--SA--4.0-blue?style=flat-square)
 
 A modular userscript that enhances [Milky Way Idle](https://www.milkywayidle.com/game) with quality-of-life features, market tools, combat statistics, alchemy tracking, and comprehensive game data overlays.
 
-**📚 [Documentation](DOCUMENTATION.md)** | **✨ [Features](FEATURES.md)** | **📝 [Changelog](CHANGELOG.md)** | **🤝 [Contributing](CONTRIBUTING.md)**
+**📚 [Documentation](DOCUMENTATION.md)** | **📝 [Changelog](CHANGELOG.md)** | **🤝 [Contributing](CONTRIBUTING.md)**
 
 ---
 
@@ -101,8 +101,6 @@ Toolasha is a complete rewrite of the popular MWITools userscript, rebuilt from 
 - **Key Info on Icons** — Contextual info overlaid on item icons
 - **External Tool Links** — Quick links to external tools from relevant panels
 - **Color Customization** — 14 configurable UI color options
-
-**[View complete feature list →](FEATURES.md)**
 
 ## Installation
 
