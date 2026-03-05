@@ -181,19 +181,6 @@ export function calculateEnhancementPredictions(itemHrid, startLevel, targetLeve
         // Get enhancing skill level
         const enhancingLevel = charData.characterSkills?.find((s) => s.skillHrid === '/skills/enhancing')?.level || 1;
 
-        // Get house level (Observatory)
-        const houseRooms = charData.characterHouseRoomMap;
-        let houseLevel = 0;
-        if (houseRooms) {
-            for (const roomHrid in houseRooms) {
-                const room = houseRooms[roomHrid];
-                if (room.houseRoomHrid === '/house_rooms/observatory') {
-                    houseLevel = room.level || 0;
-                    break;
-                }
-            }
-        }
-
         // Get equipment buffs for enhancing
         let toolBonus = 0;
         let speedBonus = 0;
@@ -201,9 +188,9 @@ export function calculateEnhancementPredictions(itemHrid, startLevel, targetLeve
         if (Array.isArray(equipmentBuffs)) {
             equipmentBuffs.forEach((buff) => {
                 if (buff.typeHrid === '/buff_types/enhancing_success') {
-                    toolBonus += (buff.flatBoost || 0) * 100; // Convert to percentage
+                    toolBonus += (buff.ratioBoost || 0) * 100; // Convert to percentage
                 }
-                if (buff.typeHrid === '/buff_types/enhancing_speed') {
+                if (buff.typeHrid === '/buff_types/action_speed') {
                     speedBonus += (buff.flatBoost || 0) * 100; // Convert to percentage
                 }
             });
@@ -214,9 +201,9 @@ export function calculateEnhancementPredictions(itemHrid, startLevel, targetLeve
         if (Array.isArray(houseBuffs)) {
             houseBuffs.forEach((buff) => {
                 if (buff.typeHrid === '/buff_types/enhancing_success') {
-                    toolBonus += (buff.flatBoost || 0) * 100;
+                    toolBonus += (buff.ratioBoost || 0) * 100;
                 }
-                if (buff.typeHrid === '/buff_types/enhancing_speed') {
+                if (buff.typeHrid === '/buff_types/action_speed') {
                     speedBonus += (buff.flatBoost || 0) * 100;
                 }
             });
@@ -239,19 +226,11 @@ export function calculateEnhancementPredictions(itemHrid, startLevel, targetLeve
         });
 
         // Get guzzling pouch bonus (drink concentration)
-        const consumableBuffs = charData.consumableActionTypeBuffsMap?.['/action_types/enhancing'];
-        if (Array.isArray(consumableBuffs)) {
-            consumableBuffs.forEach((buff) => {
-                if (buff.typeHrid === '/buff_types/drink_concentration') {
-                    guzzlingBonus = 1.0 + (buff.flatBoost || 0);
-                }
-            });
-        }
+        guzzlingBonus = 1.0 + (charData.noncombatStats.drinkConcentration || 0);
 
         // Calculate predictions
         const result = calculateEnhancement({
             enhancingLevel,
-            houseLevel,
             toolBonus,
             speedBonus,
             itemLevel,

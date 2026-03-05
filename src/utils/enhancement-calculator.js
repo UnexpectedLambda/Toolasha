@@ -91,7 +91,6 @@ export function calculatePerActionTime(enhancingLevel, itemLevel, speedBonus = 0
  * Calculate enhancement statistics using Markov Chain matrix inversion
  * @param {Object} params - Enhancement parameters
  * @param {number} params.enhancingLevel - Effective enhancing level (includes tea bonus)
- * @param {number} params.houseLevel - Observatory house room level (used for speed calculation only)
  * @param {number} params.toolBonus - Tool success bonus % (already includes equipment + house success bonus from config)
  * @param {number} params.speedBonus - Speed bonus % (for action time calculation)
  * @param {number} params.itemLevel - Item level being enhanced
@@ -104,7 +103,6 @@ export function calculatePerActionTime(enhancingLevel, itemLevel, speedBonus = 0
 export function calculateEnhancement(params) {
     const {
         enhancingLevel,
-        _houseLevel,
         toolBonus,
         speedBonus = 0,
         itemLevel,
